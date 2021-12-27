@@ -129,6 +129,16 @@
 			<button class="form__btn" type="submit">Добавить клиента</button>
 		</div>
 	</form>
+
+	<div v-show="formSubmited" class="submitScreen__wrapper">
+		<div class="submitScreen">
+			<h2>Клиент добавлен</h2>
+			<p>Клиент {{ state.surname }} {{ state.name }} успешно добавлен!</p>
+			<button @click="formSubmited = false" class="form__btn">
+				Закрыть
+			</button>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -155,7 +165,7 @@ export default {
 			dateOfIssue: '',
 		});
 
-		const validPhone = (val) => /^((7)+([0-9]){10})$/.test(val);
+		const validPhone = (val) => /^((\+7|7|8)+([0-9]){10})$/.test(val);
 
 		const rules = computed(() => {
 			return {
@@ -223,6 +233,7 @@ export default {
 	},
 	data() {
 		return {
+			formSubmited: false,
 			multi: [],
 			radioButtons: [
 				{
@@ -284,10 +295,9 @@ export default {
 		submitHandler() {
 			this.v$.$validate();
 			if (this.v$.$error) {
-				console.log(this.v$.$errors);
 				return;
 			}
-			alert('login');
+			this.formSubmited = true;
 		},
 	},
 };
@@ -427,6 +437,25 @@ export default {
 		&:hover {
 			opacity: 0.5;
 		}
+	}
+}
+.submitScreen {
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	&__wrapper {
+		background: rgba(255, 255, 255, 0.74);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 </style>
