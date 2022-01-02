@@ -1,24 +1,39 @@
-# medods-form
+# Форма создания пользователя
 
-## Project setup
+Тестовое задание для компании MEDODS
+
+### Приложение доступно для просмотра по [ссылке](https://besovmusic.github.io/medods-form/dist/)
+
+---
+
+## Используемые технологии
+
+-   Vue.js
+-   Scss
+-   Vuelidate
+
+---
+
+### Установка зависимостей
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Компиляция и hot-reloads для разработки
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Сборка и минификация файлов для продакшена
+
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Проверка кода с помощью линтера
+
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
