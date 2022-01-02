@@ -66,12 +66,7 @@
 				}"
 			/>
 			<Input type="select" title="Лечащий врач" :selectOptions="doctor" />
-			<div class="form__item form__item--checkbox">
-				<label for="sms" class="form__label">Не отправлять СМС</label>
-				<div class="form__checkbox">
-					<input type="checkbox" class="form__control" id="sms" />
-				</div>
-			</div>
+			<Input type="checkbox" title="Не отправлять СМС" id="sms" />
 		</div>
 
 		<h3>Адрес</h3>
@@ -178,7 +173,7 @@ export default {
 					),
 				},
 				name: {
-					required: helpers.withMessage('Введите имя', required),
+					required: helpers.withMessage('Введите Имя', required),
 					minLength: helpers.withMessage(
 						({ $params }) =>
 							`Поле должно содержать минимум ${$params.min} символа!`,
@@ -199,25 +194,22 @@ export default {
 				},
 				selectedGroup: {
 					required: helpers.withMessage(
-						'Поле не должно быть пустым',
+						'Выберите группу клиентов',
 						required
 					),
 				},
 				city: {
-					required: helpers.withMessage(
-						'Поле не должно быть пустым',
-						required
-					),
+					required: helpers.withMessage('Введите город', required),
 				},
 				docType: {
 					required: helpers.withMessage(
-						'Поле не должно быть пустым',
+						'Выберите тип документа',
 						required
 					),
 				},
 				dateOfIssue: {
 					required: helpers.withMessage(
-						'Поле не должно быть пустым',
+						'Введите дату выдачи документа',
 						required
 					),
 				},
@@ -341,7 +333,6 @@ export default {
 				left: 6px;
 				right: 4px;
 				bottom: 6px;
-				// background: transparent;
 				border-bottom: 2px solid #8ba4f9;
 				border-right: 2px solid #8ba4f9;
 				transform: rotate(45deg) translate(-2px);
@@ -448,14 +439,18 @@ export default {
 	flex-direction: column;
 	&__wrapper {
 		background: rgba(255, 255, 255, 0.74);
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
+		z-index: 999;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	& button {
+		margin: 0;
 	}
 }
 </style>

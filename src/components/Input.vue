@@ -74,6 +74,7 @@
 				@click="
 					sel = option.name;
 					$emit('update:value', selFiltered);
+					showSelect = !showSelect;
 				"
 				:class="{ selected: selFiltered === option.name }"
 			>
@@ -83,6 +84,21 @@
 		<small class="inputMessage" :class="{ show: valid.valid }">{{
 			valid.error
 		}}</small>
+	</div>
+
+	<div
+		v-else-if="type === 'checkbox'"
+		class="form__item form__item--checkbox"
+	>
+		<label :for="id" class="form__label">{{ title }}</label>
+		<div class="form__checkbox">
+			<input
+				type="checkbox"
+				class="form__control"
+				:id="id"
+				@change="$emit('update:value', $event.target.checked)"
+			/>
+		</div>
 	</div>
 
 	<div v-else class="form__item">
@@ -155,10 +171,16 @@ export default {
 			showSelect: false,
 			multi: [],
 			sel: '',
+			onClickOutside: undefined,
 		};
 	},
-	methods: {
-		openSelect() {},
+	created() {
+		this.onClickOutside = (e) =>
+			(this.showSelect = this.$el.contains(e.target) && this.showSelect);
+		document.addEventListener('click', this.onClickOutside);
+	},
+	beforeUnmount() {
+		document.removeEventListener('click', this.onClickOutside);
 	},
 	computed: {
 		multiFiltered() {
